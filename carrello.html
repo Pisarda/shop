@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello - Il mio negozio online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo del negozio" />
+        </div>
+		
+        <nav>
+            <ul>
+                <li><a href="index.html">Home </a></li>
+                <li><a href="carrello.html">Carrello (<span id="carrello-count">0</span>)</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="carrello-prodotti">
+        <h2>Prodotti nel Carrello</h2>
+        <ul id="carrello-lista"></ul>
+        <button id="svuota-carrello" onclick="svuotaCarrello()">Svuota carrello</button>
+        <p id="total">Totale: €0.00</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Il mio negozio online. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

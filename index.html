@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdrShop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo del negozio" />
+        </div>
+
+      
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carrello.html">Carrello (<span id="carrello-count">0</span>)</a></li>
+                <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="prodotti">
+        <div class="prodotto">
+            <img src="prodotto1.jpg" alt="Prodotto 1">
+            <h2>Prodotto 1</h2>
+            <p>Descrizione del prodotto 1.</p>
+            <span>€10.00</span>
+            <button onclick="aggiungiAlCarrello('Prodotto 1', 10)">Aggiungi al carrello</button>
+        </div>
+        <div class="prodotto">
+            <img src="prodotto2.jpg" alt="Prodotto 2">
+            <h2>Prodotto 2</h2>
+            <p>Descrizione del prodotto 2.</p>
+            <span>€20.00</span>
+            <button onclick="aggiungiAlCarrello('Prodotto 2', 20)">Aggiungi al carrello</button>
+        </div>
+        <div class="prodotto">
+            <img src="prodotto3.jpg" alt="Prodotto 3">
+            <h2>Prodotto 3</h2>
+            <p>Descrizione del prodotto 3.</p>
+            <span>€30.00</span>
+            <button onclick="aggiungiAlCarrello('Prodotto 3', 30)">Aggiungi al carrello</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 S. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+        let carrelloCount = document.getElementById('carrello-count');
+        let carrelloLista = document.getElementById('carrello-lista');
+        let total = document.getElementById('total');
+
+        function aggiungiAlCarrello(nome, prezzo) {
+            console.log(`Aggiunto al carrello: ${nome} - €${prezzo}`);
+            let prodotto = { nome: nome, prezzo: prezzo };
+            carrello.push(prodotto);
+            localStorage.setItem('carrello', JSON.stringify(carrello));
+
+           aggiornaContatoreCarrello();
+            aggiornaCarrello();
+        }
+
+        function aggiornaCarrello() {
+            let totale = 0;
+            if (carrello.length > 0) {
+                carrelloLista.innerHTML = '';
+                carrello.forEach((prodotto, index) => {
+                    let li = document.createElement('li');
+                    li.innerHTML = `${prodotto.nome} - €${prodotto.prezzo} <button onclick="rimuoviDalCarrello(${index})">Rimuovi</button>`;
+                    carrelloLista.appendChild(li);
+                    totale += prodotto.prezzo;
+                });
+                total.innerHTML = `Totale: €${totale.toFixed(2)}`;
+            } else {
+                total.innerHTML = "Totale: €0.00";
+            }
+        }
+
+        function aggiornaContatoreCarrello() {
+            carrelloCount.innerHTML = carrello.length;
+        }
+
+        function rimuoviDalCarrello(index) {
+			console.log(index);
+			console.log(carrello);
+            carrello.splice(index, 1);
+            localStorage.setItem('carrello', JSON.stringify(carrello));
+            aggiornaContatoreCarrello();
+            aggiornaCarrello();
+        }
+
+
+        aggiornaContatoreCarrello(); 
+        document.getElementById('svuota-carrello').addEventListener('click', svuotaCarrello);
+    </script>
+</body>
+</html>
