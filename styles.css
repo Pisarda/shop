@@ -1,6 +1,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+	background-image: url("wordpress-html-text-code-wallpaper-preview.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
     margin: 0;
     padding: 0;
 }
@@ -42,7 +46,7 @@ nav ul li a {
 }
 
 .prodotto {
-    background-color: white;
+    background-color: orange;
     border: 1px solid #ddd;
     padding: 20px;
     margin: 20px;
